@@ -1,0 +1,104 @@
+% !TEX program = xelatex
+\documentclass[compress,aspectratio=169]{beamer}
+
+\usepackage[english]{babel}
+\usepackage{metalogo}
+\usepackage{listings}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\usepackage[theme=nord,charsperline=60,linenumbers]{clisting}
+
+\usetheme{Nord}
+
+\setmainfont{Roboto}
+\setmonofont{JuliaMono}
+
+\title{Customized Nord Beamer Theme}
+\subtitle{A simple beamer theme that uses "Nord" color scheme}
+\author{Original by Junwei Wang \texorpdfstring{\\ Customized by Simon A. Bjørn}{}}
+\institute{University of Oslo}
+\date{11.01.2024}
+
+\begin{document}
+
+\begin{frame}[plain,noframenumbering]
+    \maketitle
+\end{frame}
+
+\begin{frame}
+    \frametitle{Usage}
+    This is an edited version of the original theme by Junwei Wang. The original theme can be found at \url{https://github.com/junwei-wang/beamerthemeNord}.
+
+    \vspace{1em}
+
+    The changes done to the theme are settings I wanted to have for my own presentations. These changes are:
+    \begin{itemize}
+        \item Added a '{\textbackslash}pin'-command to be able to create bullets (\pin) outside of itemize environments
+        \item Added Nord-styled listings for any language defined in the listings package and Julia. \\
+        Inline listings with the \texttt{{\textbackslash}cinl\{lang\}\{...code...\}}. For Julia, use \texttt{{\textbackslash}jlinl\{...code...\}} \\
+        Block listings with the \texttt{clisting} environment. For Julia, use \texttt{jllisting}.
+        \item Changed text color in blocks to Nord's white color for better contrast. See slide 3.
+            
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Code listings}
+    \begin{columns}[t]
+        \begin{column}{0.5\textwidth}
+            Julia specific: \\
+            Inline: \jlinl{println("Hello World!")} \\
+            Block:  
+            \begin{jllisting}[gobble=16]
+                using LinearAlgebra
+
+                A = rand(3, 3)
+                println(eigvals(A))
+            \end{jllisting}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            Any other language from listings \\
+            Inline: \cinl{c++}{std::cout << "Hello World!" << std::endl;} \\
+            Block:
+            \begin{clisting}[language=c++, gobble=16]
+                #include <iostream>
+
+                int main() {
+                    std::cout << "Hello World!" << std::endl;
+                    return 0;
+                }
+            \end{clisting}
+            
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Blocks}
+  \begin{block}{This is a Block}
+    \[
+      a^2 + b^2 = c^2
+    \]
+  \end{block}
+  \begin{exampleblock}{This is an Example Block}
+    \[
+      E = m \cdot c^{2}
+    \]
+  \end{exampleblock}
+  \begin{alertblock}{This is an Alert Block}
+    \[
+      e^{i\pi} + 1 = 0
+    \]
+  \end{alertblock}
+
+  \centering
+  \begin{minipage}{1.0\linewidth}
+    \begin{block}{Horizontally-Aligned Block}
+      \[
+        \log xy = \log x + \log y
+      \]
+    \end{block}
+  \end{minipage}
+\end{frame}
+
+\end{document}
